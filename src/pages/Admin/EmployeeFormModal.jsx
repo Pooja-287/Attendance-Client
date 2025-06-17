@@ -68,10 +68,10 @@ const EmployeeFormModal = ({ closeModal, fetchEmployees, editEmployee }) => {
       if (editEmployee) {
         const updateData = { ...formData };
         if (!updateData.password) delete updateData.password;
-        await axios.put(`http://localhost:5000/api/employee/update/${editEmployee._id}`, updateData, config);
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/employee/update/${editEmployee._id}`, updateData, config);
         toast.success('Employee updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/employee/create', formData, config);
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/employee/create`, formData, config);
         toast.success('Employee created successfully');
       }
 
