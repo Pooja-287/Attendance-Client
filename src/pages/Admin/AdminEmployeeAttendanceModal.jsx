@@ -41,7 +41,7 @@ const AdminEmployeeAttendanceModal = ({ employee, onClose }) => {
         try {
             setMonthlySummaryLoading(true);
             const res = await axios.get(
-                `http://localhost:5000/api/attendance/monthly-summary/${employeeId}/${year}/${month}`,
+                `${process.env.REACT_APP_API_URL}/api/attendance/monthly-summary/${employeeId}/${year}/${month}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
