@@ -8,7 +8,7 @@ const PermissionTable = () => {
 
   const fetchPermissions = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/permission/list', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/permission/list`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,7 +25,7 @@ const PermissionTable = () => {
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/permission/approve/${id}`, {}, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/permission/approve/${id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Permission approved');
@@ -38,7 +38,7 @@ const PermissionTable = () => {
 
   const handleReject = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/permission/reject/${id}`, {}, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/permission/reject/${id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Permission rejected');
