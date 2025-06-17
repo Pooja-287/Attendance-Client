@@ -18,7 +18,7 @@ const LeaveTable = () => {
   const fetchLeaves = async () => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/leave/my-requests?month=${selectedMonth}&year=${selectedYear}`,
+      `${process.env.REACT_APP_API_URL}/api/leave/my-requests?month=${selectedMonth}&year=${selectedYear}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setLeaveRequests(res.data);
@@ -42,7 +42,7 @@ const LeaveTable = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/leave/request',
+        `${process.env.REACT_APP_API_URL}/api/leave/request`,
         formData,
         {
           headers: {
