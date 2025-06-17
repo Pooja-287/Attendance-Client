@@ -46,7 +46,7 @@ const EmployeeDashboard = () => {
     try {
       const headers = { Authorization: `Bearer ${token}` };
       const res = await axios.get(
-        `http://localhost:5000/api/attendance/monthly-summary/${employeeId}/${year}/${month}`,
+        `${process.env.REACT_APP_API_URL}/api/attendance/monthly-summary/${employeeId}/${year}/${month}`,
         { headers }
       );
       setMonthlySummary(res.data);
@@ -74,7 +74,7 @@ const EmployeeDashboard = () => {
       const headers = { Authorization: `Bearer ${token}` };
 
       // 1. Fetch profile data
-      const profileRes = await axios.get('http://localhost:5000/api/profile', { headers });
+      const profileRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, { headers });
       setProfileData(profileRes.data.profile);
 
 
@@ -97,7 +97,7 @@ const EmployeeDashboard = () => {
 
       // 5. Fetch today's attendance (for check-in time)
       try {
-        const attendanceRes = await axios.get('http://localhost:5000/api/attendance/my-today', { headers });
+        const attendanceRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/attendance/my-today`, { headers });
         setCheckInTime(
   attendanceRes.data.todayStatus?.checkIn
     ? attendanceRes.data.todayStatus.checkIn
@@ -115,7 +115,7 @@ const EmployeeDashboard = () => {
       }
 
       // 6. Fetch leave requests and calculate counts by status
-      const leaveRes = await axios.get('http://localhost:5000/api/leave/my-requests', { headers });
+      const leaveRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/leave/my-requests`, { headers });
       const leaves = leaveRes.data.leaveRequests || leaveRes.data || [];
       const pendingLeaves = leaves.filter((l) => l.status === 'Pending').length;
       const approvedLeaves = leaves.filter((l) => l.status === 'Approved').length;
@@ -123,7 +123,7 @@ const EmployeeDashboard = () => {
       setLeaveStatusCounts({ pending: pendingLeaves, approved: approvedLeaves, rejected: rejectedLeaves });
 
       // 7. Fetch permission requests and calculate counts by status
-      const permissionRes = await axios.get('http://localhost:5000/api/permission/my-requests', { headers });
+      const permissionRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/permission/my-requests`, { headers });
       const permissions = permissionRes.data || [];
       const pendingPerm = permissions.filter((p) => p.status === 'Pending').length;
       const approvedPerm = permissions.filter((p) => p.status === 'Approved').length;
