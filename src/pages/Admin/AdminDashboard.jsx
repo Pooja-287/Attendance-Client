@@ -39,7 +39,7 @@ const AdminDashboard = () => {
     if (activeTab === 'dashboard') {
       const fetchDashboardStats = async () => {
         try {
-          const res = await axios.get('http://localhost:5000/api/dashboard/stats', {
+          const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/dashboard/stats`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setDashboardStats(res.data);
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
 
   const handleProfileClick = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/profile', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProfileData(res.data.profile);
