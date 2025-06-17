@@ -19,7 +19,7 @@ const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
  const fetchPermissions = async () => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/permission/my-requests?month=${selectedMonth}&year=${selectedYear}`,
+      `${process.env.REACT_APP_API_URL}/api/permission/my-requests?month=${selectedMonth}&year=${selectedYear}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -40,7 +40,7 @@ const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/permission/request', formData, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/permission/request`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
