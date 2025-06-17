@@ -22,7 +22,7 @@ const EmployeeViewModal = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/employee/list', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/employee/list`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEmployees(response.data);
@@ -38,7 +38,7 @@ const EmployeeViewModal = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this employee?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/employee/delete/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/employee/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Employee deleted');
@@ -50,7 +50,7 @@ const EmployeeViewModal = () => {
 
   const handleView = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/employee/list/${id}`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/employee/list/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSelectedEmployee(res.data);
@@ -62,7 +62,7 @@ const EmployeeViewModal = () => {
 
   const handleEdit = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/employee/list/${id}`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/employee/list/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEditEmployee(res.data);
