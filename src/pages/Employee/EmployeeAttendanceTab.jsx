@@ -9,7 +9,7 @@ const EmpAttendanceTab = () => {
 
   const fetchAttendance = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/attendance/my-today', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/attendance/my-today`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -59,7 +59,7 @@ const handleCheckIn = async () => {
 
   const handleCheckOut = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/attendance/checkout', {}, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/attendance/checkout`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success(`✅ ${res.data.message}`);
