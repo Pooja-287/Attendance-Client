@@ -8,7 +8,7 @@ const LeaveTable = () => {
 
   const fetchLeaves = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/leave/list', {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/leave/list`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLeaveRequests(res.data);
@@ -23,7 +23,7 @@ const LeaveTable = () => {
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/leave/approve/${id}`, {}, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/leave/approve/${id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Leave approved');
@@ -35,7 +35,7 @@ const LeaveTable = () => {
 
   const handleReject = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/leave/reject/${id}`, {}, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/leave/reject/${id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Leave rejected');
